@@ -6,9 +6,13 @@
  	__metaclass__ = abc.ABCMeta 
 
  	@abc.abstractmethod 
- 	def hit(self, (x, y)): 
+ 	def hit(self, (x, y): 
  		return 
  		
  	@abc.abstractmethod 
- 	def miss(self, (x, y)): 
+ 	def miss(self, (x, y): 
+ 		return 
+
+ 	@abc.abstractmethod
+ 	def getBoard(self):
  		return 
