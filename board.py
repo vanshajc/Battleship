@@ -20,14 +20,10 @@ class Board:
                 for pos_i in ship:
                     self.board[pos_i[0]][pos_i[1]] = "2"
 
-    def print(self):
+    def printBoard(self):
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
                 sys.stdout.write(str(self.board[i][j]) + " ")
             print("\n")
     def getBoard(self):
         return board
-board = Board([[(0, 0, 'not hit')], [(0, 2, 'not hit'), (1, 2, 'not hit')], [(3, 3, 'not hit')]])
-board.update((0, 2))
-board.update((1, 2))
-board.print()
