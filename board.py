@@ -20,6 +20,13 @@ class Board:
                 for pos_i in ship:
                     self.board[pos_i[0]][pos_i[1]] = "2"
 
+    def hasEnded(self):
+        for ship in self.ships:
+            for pos in ship:
+                if pos[2] == "not hit":
+                    return False
+        return True
+
     def printBoard(self):
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
@@ -32,6 +39,6 @@ class Board:
         message = ""
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
-                message+= str(self.board[i][j])
-            message+="\n"
+                message+= str(self.board[i][j]) + " "
+            message+="\r\n"
         return message

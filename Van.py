@@ -14,19 +14,24 @@ print data
 # do this for each ship location. 
 s.send('0,0 0,1')
 time.sleep(0.1)
-s.send('1,0 1,1')
+s.send('1,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('2,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('3,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('4,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('5,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('6,0')
 time.sleep(0.1)
-s.send('2,0 2,1')
+s.send('7,0')
 
-data = s.recv(1024)
-print data
+while 1:
+	data = s.recv(1024)
+	print data
+	if (data == 'Game Over')
+		break
+	inp = raw_input("Enter a move:") #python 3 is input()
+	s.send(inp)

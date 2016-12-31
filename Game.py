@@ -60,18 +60,29 @@ b2.printBoard()
 print '---------------------------------'
 
 turn = 0
+while 1:
+	if turn%2 == 0:
+		p1[0].send(b2.toString())
+		d1 = p1[0].recv(1024)
+		if not d1:
+			break
+		b2.update((int(d1[0]), int(d1[2])))
+		print d1
+	if turn%2 == 1:
+		p2[0].send(b1.toString())
+		d2 = p2[0].recv(1024)
+		if not d2:
+			break
+		b1.update((int(d2[0]), int(d2[2])))
+		print d2
 
-if turn%2 == 0:
-	p1[0].send(b2.toString())
-	#d1 = p1[0].recv(1024)
-	#if not d1:
-	#	break
-	#print d1
-if turn%2 == 1:
-	p2[0].send(b1.toString())
-	#d2 = p2[0].recv(1024)
-	#if not d2:
-	#	break
-	#print d2
+	if (b1.hasEnded()):
+		print "Player 2 Wins!"
+		break
+	if b2.hasEnded():
+		print "Player 1 Wins!"
+		break
+	turn +=1
+
 s.close()
 
