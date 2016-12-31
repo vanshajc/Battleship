@@ -12,3 +12,7 @@
  	@abc.abstractmethod
  	def getBoard(self):
  		return 
+
+ 	@abc.abstractmethod 
+ 	def recieveBoard(self): 
+ 		return 
