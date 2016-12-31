@@ -32,5 +32,6 @@ class Board:
         message = ""
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
-                message+=self.board[i][j]+" "
+                message+= str(self.board[i][j])
             message+="\n"
+        return message

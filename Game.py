@@ -3,14 +3,14 @@ import sys
 import time
 import os
 import subprocess as sp
-import board
+from board import Board
 import player
 from thread import *
 HOST = ''   # Symbolic name meaning all available interfaces
 PORT = 5003 # Arbitrary non-privileged port
  
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
- 
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
     s.bind((HOST, PORT))
 except socket.error , msg:
@@ -32,8 +32,46 @@ print '2 Players Found. Game will begin.'
 
 p1[0].send('Requesting List of Ships')
 p2[0].send('Requesting List of Ships')
-d1 = p1[0].recv(1024)
-print d1
 
+ships1 = []
+ships2 = []
+for i in range(8):
+	d1 = p1[0].recv(1024)
+	d2 = p2[0].recv(1024)
+	print repr(d1)
+	print repr(d2)
+	s1 = []
+	s2 = []
+	for n in d1.split():
+		s1.append((int(n[0]), int(n[2]), 'not hit'))
+	for n in d2.split():
+		s2.append((int(n[0]), int(n[2]), 'not hit'))
+	ships1.append(s1)
+	ships2.append(s2)
+
+print 'Finished reading list of ships'
+
+b1 = Board(ships1)
+b2 = Board(ships2)
+
+b1.printBoard()
+print '---------------------------------'
+b2.printBoard()
+print '---------------------------------'
+
+turn = 0
+
+if turn%2 == 0:
+	p1[0].send(b2.toString())
+	#d1 = p1[0].recv(1024)
+	#if not d1:
+	#	break
+	#print d1
+if turn%2 == 1:
+	p2[0].send(b1.toString())
+	#d2 = p2[0].recv(1024)
+	#if not d2:
+	#	break
+	#print d2
 s.close()
 
