@@ -30,3 +30,10 @@ p2 = s.accept();
  
 print '2 Players Found. Game will begin.'
 
+p1[0].send('Requesting List of Ships')
+p2[0].send('Requesting List of Ships')
+d1 = p1[0].recv(1024)
+print d1
+
+s.close()
+

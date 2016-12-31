@@ -8,6 +8,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print 'Connecting...'
 s.connect((HOST, PORT))
 data = s.recv(1024)
-s.close()
 
+print data
 
+# do this for each ship location. 
+s.sendall('0,0 0,1')
+s.sendall('1,0 1,1')
+s.sendall('2,0 2,1')
